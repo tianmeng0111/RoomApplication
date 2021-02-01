@@ -19,17 +19,42 @@ public class MyObserver implements LifecycleObserver {
         mActivityTag = activityTag;
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    public void onCreate() {
+        // ...
+        Log.e(mActivityTag, "------ onCreate");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onStart() {
+        // ...
+        Log.e(mActivityTag, "------ onStart");
+    }
+
     // 使用注解  @OnLifecycleEvent 来表明该方法需要监听指定的生命周期事件, 该方法具有了生命周期感知能力
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void connectListener() {
+    public void onResume() {
         // ...
-        Log.d(mActivityTag, "connectListener: ------ OnResume");
+        Log.e(mActivityTag, "------ onResume");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    public void disconnectListener() {
+    public void onPause() {
         // ...
-        Log.d(mActivityTag, "disconnectListener: ------ OnPause");
+        Log.e(mActivityTag, "------ onPause");
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onStop() {
+        // ...
+        Log.e(mActivityTag, "------ onStop");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        // ...
+        Log.e(mActivityTag, "------ onDestroy");
+    }
+
 
 }

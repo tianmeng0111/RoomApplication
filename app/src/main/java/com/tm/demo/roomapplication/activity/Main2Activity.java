@@ -43,20 +43,36 @@ public class Main2Activity extends Activity implements LifecycleOwner {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        lifecycleRegistry.markState(Lifecycle.State.STARTED);//执行onResume
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         lifecycleRegistry.markState(Lifecycle.State.RESUMED);//执行onResume
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         lifecycleRegistry.markState(Lifecycle.State.STARTED);//执行onPause
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         lifecycleRegistry.markState(Lifecycle.State.DESTROYED);
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
     }
 }
