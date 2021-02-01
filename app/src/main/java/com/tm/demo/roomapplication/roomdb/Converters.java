@@ -1,4 +1,4 @@
-package com.tm.demo.roomapplication;
+package com.tm.demo.roomapplication.roomdb;
 
 import java.util.Date;
 

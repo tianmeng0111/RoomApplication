@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/activity_2"
+        android:title="go to Main2Activity"
+        />
+    <item
+        android:id="@+id/activity_fragment"
+        android:title="go to FragmentActivity"
+        />
+</menu>

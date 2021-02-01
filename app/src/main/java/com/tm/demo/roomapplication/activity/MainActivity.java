@@ -1,9 +1,16 @@
-package com.tm.demo.roomapplication;
+package com.tm.demo.roomapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.tm.demo.roomapplication.roomdb.AppDatabase;
+import com.tm.demo.roomapplication.MyObserver;
+import com.tm.demo.roomapplication.R;
 import com.tm.demo.roomapplication.dao.UserDao;
 import com.tm.demo.roomapplication.entity.User;
 
@@ -18,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /**
+         *  完成 Lifecycle 和LifecycleObserver 的绑定
+         * 因为 MainActivity继承了 AppCompatActivity，所以直接使用 getLifecycle() 方法来获取 Lifecycle，只此一行代码
+         */
+        getLifecycle().addObserver(new MyObserver(TAG));
 
 //        AppDatabase appDatabase = AppDatabase.Companion.aStaticFunction(this);
         AppDatabase appDatabase = AppDatabase.getInstance(this);
@@ -57,5 +70,24 @@ public class MainActivity extends AppCompatActivity {
 //                    + ",birthday-year:" + user.getBirthday().getYear());
 //        }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.activity_2:
+                startActivity(new Intent(this, Main2Activity.class));
+                break;
+            case R.id.activity_fragment:
+                startActivity(new Intent(this, HaveFragmentActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
